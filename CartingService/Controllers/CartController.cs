@@ -1,4 +1,7 @@
-﻿using BLL.Service;
+﻿using AutoMapper;
+using BLL.Service;
+using CartingService.Api.BLL.Models;
+using CartingService.Api.Web.Models;
 using DAL.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,44 +14,49 @@ namespace CartingService.Controllers
     public class CartController : ControllerBase
     {
         private readonly ILogger<CartController> logger;
+        private readonly IMapper mapper;
         private readonly ICartService cartService;
 
-        public CartController(ILogger<CartController> logger, ICartService cartService)
+        public CartController(IMapper mapper, ILogger<CartController> logger, ICartService cartService)
         {
+            this.mapper = mapper;
             this.logger = logger;
             this.cartService = cartService;
         }
 
         [HttpGet]
-        public IEnumerable<Cart> Get()
+        public IEnumerable<CartUI> Get()
         {
-            return cartService.FindAll();
+            var cartsBS = cartService.FindAll();
+            var cartsUI = mapper.Map<IList<CartUI>>(cartsBS);
+
+            return cartsUI;
         }
 
-
         [HttpGet("{id}", Name = "FindOne")]
-        public ActionResult<Cart> Get(int id)
+        public ActionResult<CartUI> Get(int id)
         {
-            var result = cartService.FindCart(id);
-            if (result != default)
-                return Ok(result);
+            var cartBS = cartService.FindCart(id);
+            var cartUI = mapper.Map<CartUI>(cartBS);
+            if (cartUI != default)
+                return Ok(cartUI);
             else
                 return NotFound();
         }
 
-
         [HttpPost]
-        public ActionResult<Cart> Insert(Cart dto)
+        public ActionResult<CartUI> Insert(CartUI dto)
         {
-            var id = cartService.Insert(dto);
+            var cartBS = mapper.Map<CartBS>(dto);
+            var id = cartService.Insert(cartBS);
             if (id != default)
-                return CreatedAtRoute("FindOne", new { id = id }, dto);
+                return Ok(dto);
             else
                 return BadRequest();
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<Cart> Delete(int id)
+        public ActionResult Delete(int id)
         {
             var result = cartService.Delete(id);
             if (result > 0)
@@ -58,7 +66,7 @@ namespace CartingService.Controllers
         }
 
         [HttpDelete("{id:int}/item/{itemId:int}")]
-        public ActionResult<Cart> DeleteItem(int id, int itemId)
+        public ActionResult DeleteItem(int id, int itemId)
         {
             var result = cartService.DeleteItem(id, itemId);
             if (result > 0)

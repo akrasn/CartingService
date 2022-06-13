@@ -1,4 +1,5 @@
-﻿using DAL.Models;
+﻿using CartingService.Api.BLL.Models;
+using DAL.Models;
 using System.Collections.Generic;
 
 namespace BLL.Service
@@ -7,9 +8,9 @@ namespace BLL.Service
     {
         int Delete(int id);
         int DeleteItem(int clientId, int itemId);
-        IEnumerable<Cart> FindAll();
-        IEnumerable<Cart> FindCart(int id);
-        int Insert(Cart cart);
-        bool Update(Cart cart);
+        IEnumerable<CartBS> FindAll();
+        IEnumerable<CartBS> FindCart(int id);
+        int Insert(CartBS cart);
+        bool Update(CartBS cart);
     }
 }

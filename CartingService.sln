@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32413.511
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CartingService", "CartingService\CartingService.csproj", "{6A3800EE-45CE-4871-827F-C7692A09E007}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CartingService.Api.Web", "CartingService\CartingService.Api.Web.csproj", "{6A3800EE-45CE-4871-827F-C7692A09E007}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{6DF03F15-39A7-425B-A4E0-1831FC383A64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CartingService.Api.DAL", "DAL\CartingService.Api.DAL.csproj", "{6DF03F15-39A7-425B-A4E0-1831FC383A64}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{98EC0925-52F1-47E2-BF21-A23B5237A908}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CartingService.Api.BLL", "BLL\CartingService.Api.BLL.csproj", "{98EC0925-52F1-47E2-BF21-A23B5237A908}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

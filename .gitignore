@@ -6,3 +6,7 @@
 /DAL/bin/Debug/netcoreapp3.1
 /DAL/bin/Debug/netcoreapp3.1
 /BLL/bin/Debug/netcoreapp3.1
+/.vs/CartingService
+/CartingService/bin/Debug/netcoreapp3.1
+/CartingService/obj
+/DAL/obj

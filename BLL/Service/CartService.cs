@@ -2,6 +2,8 @@
 using DAL.Repository;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
+using CartingService.Api.BLL.Models;
 
 namespace BLL.Service
 {
@@ -9,44 +11,52 @@ namespace BLL.Service
     {
         private IGenericLiteRepository<Cart> cartGenericRepository;
         private ICartingRepository cartRepository;
+        private readonly IMapper mapper;
 
-        public CartService(IGenericLiteRepository<Cart> cartGenericRepository, ICartingRepository cartRepository)
+        public CartService(IMapper mapper, IGenericLiteRepository<Cart> cartGenericRepository, ICartingRepository cartRepository)
         {
+            this.mapper = mapper;
             this.cartGenericRepository = cartGenericRepository;
             this.cartRepository = cartRepository;
         }
 
         public int Delete(int id)
         {
-            return cartGenericRepository.Delete(id);
+            return cartRepository.Delete(id);
         }
 
         public int DeleteItem(int clientId, int itemId)
         {
             return cartRepository.DeleteItem(clientId, itemId);
         }
-        public IEnumerable<Cart> FindAll()
+        public IEnumerable<CartBS> FindAll()
         {
-            var result = cartGenericRepository.FindAll();
-            return result;
+            var carts = cartGenericRepository.FindAll();
+            var cartsBS = mapper.Map<IList<CartBS>>(carts);
+           
+            return cartsBS;
         }
 
-        public Cart FindOne(int id)
+        public CartBS FindOne(int id)
         {
-            return cartRepository.FindCartOne(id);
+            var cart = cartRepository.FindCartOne(id);
+            var cartBS = mapper.Map<CartBS>(cart);
+            return cartBS;
         }
 
-        public IEnumerable<Cart> FindCart(int id)
+        public IEnumerable<CartBS> FindCart(int id)
         {
-            return cartRepository.FindCart(id);
+            var carts = cartRepository.FindCart(id);
+            var CartsBS = mapper.Map<IList<CartBS>>(carts);
+            return CartsBS;
         }
 
-        public int Insert(Cart cart)
+        public int Insert(CartBS cartBS)
         {
-            var cartId = cart.Id;
-            var cartItems = cartRepository.FindCart(cart.ClientId);
-            var product = cartItems.FirstOrDefault(_ =>_.product.Id == cart.product.Id);
-
+            var cartId = cartBS.Id;
+            var cartItems = cartRepository.FindCart(cartBS.ClientId);
+            var product = cartItems.FirstOrDefault(_ =>_.product.Id == cartBS.product.Id);
+            var cart = mapper.Map<Cart>(cartBS);
             if (product == null)
             {
                 cartId = cartGenericRepository.Insert(cart);
@@ -59,8 +69,9 @@ namespace BLL.Service
             return cartId;
         }
 
-        public bool Update(Cart cart)
+        public bool Update(CartBS cartBS)
         {
+            var cart = mapper.Map<Cart>(cartBS);
             return cartGenericRepository.Update(cart);
         }
 
