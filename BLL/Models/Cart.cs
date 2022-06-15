@@ -3,12 +3,12 @@ using System;
 
 namespace CartingService.Api.BLL.Models
 {
-    public class CartBS
+    public class Cart
     {
         public int Id { get; set; }
         public int ClientId { get; set; }
         public double Quantity { get; set; }
-        public ProductBS product { get; set; }
+        public Product product { get; set; }
 
     }
 }

@@ -8,9 +8,9 @@ namespace BLL.Service
     {
         int Delete(int id);
         int DeleteItem(int clientId, int itemId);
-        IEnumerable<CartBS> FindAll();
-        IEnumerable<CartBS> FindCart(int id);
-        int Insert(CartBS cart);
-        bool Update(CartBS cart);
+        IEnumerable<CartingService.Api.BLL.Models.Cart> FindAll();
+        IEnumerable<CartingService.Api.BLL.Models.Cart> FindCart(int id);
+        int Insert(CartingService.Api.BLL.Models.Cart cart);
+        bool Update(CartingService.Api.BLL.Models.Cart cart);
     }
 }

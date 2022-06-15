@@ -25,19 +25,19 @@ namespace CartingService.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<CartUI> Get()
+        public IEnumerable<Api.Web.Models.Cart> Get()
         {
             var cartsBS = cartService.FindAll();
-            var cartsUI = mapper.Map<IList<CartUI>>(cartsBS);
+            var cartsUI = mapper.Map<IList<Api.Web.Models.Cart>>(cartsBS);
 
             return cartsUI;
         }
 
         [HttpGet("{id}", Name = "FindOne")]
-        public ActionResult<CartUI> Get(int id)
+        public ActionResult<Api.Web.Models.Cart> Get(int id)
         {
             var cartBS = cartService.FindCart(id);
-            var cartUI = mapper.Map<CartUI>(cartBS);
+            var cartUI = mapper.Map<Api.Web.Models.Cart>(cartBS);
             if (cartUI != default)
                 return Ok(cartUI);
             else
@@ -45,9 +45,9 @@ namespace CartingService.Controllers
         }
 
         [HttpPost]
-        public ActionResult<CartUI> Insert(CartUI dto)
+        public ActionResult<Api.Web.Models.Cart> Insert(Api.Web.Models.Cart dto)
         {
-            var cartBS = mapper.Map<CartBS>(dto);
+            var cartBS = mapper.Map<Api.BLL.Models.Cart>(dto);
             var id = cartService.Insert(cartBS);
             if (id != default)
                 return Ok(dto);

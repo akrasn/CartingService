@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CartingService.Api.BLL.Models
+namespace CartingService.Api.Web.Models
 {
-    public class ProductBS
+    public class Product
     {
         public int Id { get; set; }
 

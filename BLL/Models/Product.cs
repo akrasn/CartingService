@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CartingService.Api.BLL.Models
 {
-    public class ProductUI
+    public class Product
     {
         public int Id { get; set; }
 
