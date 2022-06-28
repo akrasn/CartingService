@@ -10,3 +10,9 @@
 /CartingService/bin/Debug/netcoreapp3.1
 /CartingService/obj
 /DAL/obj
+/CartingService.Api.BLL/bin/Debug/netcoreapp3.1
+/CartingService.Api.BLL/obj
+/CartingService.Api.DAL/bin/Debug/netcoreapp3.1
+/CartingService.Api.DAL/obj
+/CartingService.Api.Web/bin/Debug/netcoreapp3.1
+/CartingService.Api.Web/obj
