@@ -32,44 +32,5 @@ namespace CartingService.Controllers
 
             return cartsUI;
         }
-
-        [HttpGet("{id}", Name = "FindOne")]
-        public IEnumerable<Api.Web.Models.CartProducts> Get(int id)
-        {
-            var cartBS = cartService.FindCart(id);
-            var cartsUI = mapper.Map<IList<Api.Web.Models.CartProducts>>(cartBS);
-            return cartsUI;
-        }
-
-        [HttpPost]
-        public ActionResult<Api.Web.Models.CartProducts> Insert(Api.Web.Models.CartProducts dto)
-        {
-            var cartBS = mapper.Map<Api.BLL.Models.Cart>(dto);
-            var id = cartService.Insert(cartBS);
-            if (id != default)
-                return Ok(dto);
-            else
-                return BadRequest();
-        }
-
-        [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
-        {
-            var result = cartService.Delete(id);
-            if (result > 0)
-                return NoContent();
-            else
-                return NotFound();
-        }
-
-        [HttpDelete("{id:int}/item/{itemId:int}")]
-        public ActionResult DeleteItem(int id, int itemId)
-        {
-            var result = cartService.DeleteItem(id, itemId);
-            if (result > 0)
-                return NoContent();
-            else
-                return NotFound();
-        }
     }
 }

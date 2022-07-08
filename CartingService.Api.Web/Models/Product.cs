@@ -15,5 +15,7 @@ namespace CartingService.Api.Web.Models
 
         public double Price { get; set; }
 
+        public string DeleteItemUrl { get; set; }
+
     }
 }
