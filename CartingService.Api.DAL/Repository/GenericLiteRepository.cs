@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DAL.Repository
 {
-    public class GenericLiteRepository<TEntity> : IGenericLiteRepository<TEntity> where TEntity : BaseLiteEntity
+    public class GenericLiteRepository<TEntity> : IGenericLiteRepository<TEntity> where TEntity : IBaseLiteEntity
     {
         private LiteDatabase _liteDb;
 

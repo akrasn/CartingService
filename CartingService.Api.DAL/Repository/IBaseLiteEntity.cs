@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DAL.Repository
 {
-   public class BaseLiteEntity
+    public interface IBaseLiteEntity
     {
         public int Id { get; set; }
     }

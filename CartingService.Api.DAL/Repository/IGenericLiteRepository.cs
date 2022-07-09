@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DAL.Repository
 {
-    public interface IGenericLiteRepository<TEntity> where TEntity : BaseLiteEntity
+    public interface IGenericLiteRepository<TEntity> where TEntity : IBaseLiteEntity
     {
         int Delete(int id);
         IEnumerable<TEntity> FindAll();

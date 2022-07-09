@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DAL.Models
 {
-    public class Product
+    public class Product: IBaseLiteEntity
     {
         public int Id { get; set; }
 
