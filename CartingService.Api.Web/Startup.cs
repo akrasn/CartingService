@@ -1,5 +1,7 @@
 using BLL.Service;
 using CartingService.Api.Web.Mappings;
+using CartingService.Api.Web.Models;
+using CartingService.Api.Web.Service;
 using DAL.DataContext;
 using DAL.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -23,10 +25,12 @@ namespace CartingService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<ILiteDbContext, LiteDbContext>();
+            services.AddTransient<ILiteDbContext, LiteDbContext>();
+            ////services.AddScoped(typeof(Message));
             services.AddScoped(typeof(IGenericLiteRepository<>), typeof(GenericLiteRepository<>));
-            services.AddSingleton<ICartingRepository, CartingRepository>();
+            services.AddTransient<ICartingRepository, CartingRepository>();
             services.AddTransient<ICartService, CartService>();
+            services.AddTransient<IMessageService, MessageService>();
             services.AddAutoMapper(typeof(AppMappingProfile));
             services.AddControllers();
             services.AddSwaggerGen(c =>

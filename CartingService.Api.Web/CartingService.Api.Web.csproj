@@ -5,9 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+	  <PackageReference Include="kafka-sharp" Version="1.4.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +20,4 @@
     <ProjectReference Include="..\CartingService.Api.BLL\CartingService.Api.BLL.csproj" />
     <ProjectReference Include="..\CartingService.Api.DAL\CartingService.Api.DAL.csproj" />
   </ItemGroup>
-
-
 </Project>

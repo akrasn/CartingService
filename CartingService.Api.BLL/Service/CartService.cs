@@ -8,14 +8,14 @@ namespace BLL.Service
 {
     public class CartService : ICartService
     {
-        private IGenericLiteRepository<DAL.Models.Cart> cartGenericRepository;
+      // private IGenericLiteRepository<DAL.Models.Cart> cartGenericRepository;
         private ICartingRepository cartRepository;
         private readonly IMapper mapper;
 
-        public CartService(IMapper mapper, IGenericLiteRepository<DAL.Models.Cart> cartGenericRepository, ICartingRepository cartRepository)
+        public CartService(IMapper mapper,  ICartingRepository cartRepository)
         {
             this.mapper = mapper;
-            this.cartGenericRepository = cartGenericRepository;
+           // this.cartGenericRepository = cartGenericRepository;
             this.cartRepository = cartRepository;
         }
 
@@ -58,20 +58,35 @@ namespace BLL.Service
             var cart = mapper.Map<DAL.Models.Cart>(cartBS);
             if (product == null)
             {
-                cartId = cartGenericRepository.Insert(cart);
+                cartId = cartRepository.Insert(cart);
             }
             else
             {
-                cartGenericRepository.Update(cart);
+                cartRepository.Update(cart);
             }
 
             return cartId;
         }
 
+        public void UpdateProduct(UpdateProduct updateProduct)
+        {
+            var updateProducts = cartRepository.FindProducts(updateProduct.Id);
+            foreach (var item in updateProducts)
+            {
+                item.Product.Image = updateProduct.Image;
+                item.Product.Name = updateProduct.Name;
+                item.Product.Price = updateProduct.Price;
+                cartRepository.Update(item);
+
+                // cartGenericRepository.Update(item);
+            }
+        }
+
         public bool Update(CartingService.Api.BLL.Models.Cart cartBS)
         {
             var cart = mapper.Map<DAL.Models.Cart>(cartBS);
-            return cartGenericRepository.Update(cart);
+            return cartRepository.Update(cart);
+            //return cartGenericRepository.Update(cart);
         }
 
     }

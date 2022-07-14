@@ -12,6 +12,7 @@ namespace DAL.Repository
         IEnumerable<Cart> FindAll();
         Cart FindCartOne(int id);
         IEnumerable<Cart> FindCart(int id);
+        IEnumerable<Cart> FindProducts(int id);
         int Insert(Cart entity);
         bool Update(Cart entity);
     }

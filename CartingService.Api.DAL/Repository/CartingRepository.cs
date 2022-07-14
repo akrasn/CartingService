@@ -34,6 +34,12 @@ namespace DAL.Repository
                 .Find(x => x.ClientId == id);
         }
 
+        public IEnumerable<Cart> FindProducts(int id)
+        {
+            return _liteDb.GetCollection<Cart>("Cart")
+                .Find(x => x.Product.Id == id);
+        }
+
         public int Insert(Cart forecast)
         {
             return _liteDb.GetCollection<Cart>("Cart")

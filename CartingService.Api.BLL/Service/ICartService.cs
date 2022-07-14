@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CartingService.Api.BLL.Models;
+using System.Collections.Generic;
 
 namespace BLL.Service
 {
@@ -10,5 +11,6 @@ namespace BLL.Service
         IEnumerable<CartingService.Api.BLL.Models.Cart> FindCart(int id);
         int Insert(CartingService.Api.BLL.Models.Cart cart);
         bool Update(CartingService.Api.BLL.Models.Cart cart);
+        void UpdateProduct(UpdateProduct updateProduct);
     }
 }
